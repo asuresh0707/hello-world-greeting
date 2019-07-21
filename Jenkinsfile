@@ -28,3 +28,16 @@ node('docker'){
       server.upload(uploadSpec)
    }
 }
+
+stash includes: 'targets/hello-0.0.1.war, src/pt/Hello_World_Test_Plan.jmx', name: 'binary'
+
+node('docker_pt'){
+   stage('start tomcat'){
+      
+      sh '''cd /home/jenkins/tomcat/bin
+            ./startup.sh''';
+   }
+   
+   }
+   
+}
